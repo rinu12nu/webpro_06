@@ -120,4 +120,13 @@ app.get("/keiyo2_add", (req, res) => {
   res.redirect('/public/keiyo2_add.html');
   });
 
+// Delete
+app.get("/keiyo2/delete/:number", (req, res) => {
+  // 本来は削除の確認ページを表示する
+  // 本来は削除する番号が存在するか厳重にチェックする
+  // 本来ならここにDBとのやり取りが入る
+  station2.splice( req.params.number, 1 );
+  res.redirect('/keiyo2' );
+  });
+
 app.listen(8080, () => console.log("Example app listening on port 8080!"));

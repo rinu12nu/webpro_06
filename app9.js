@@ -148,7 +148,73 @@ let animal = [
     res.redirect('/animal' );
   });
   
+  let youkai = [
+    { id:1, name:"ジバニャン", type:"プリチー", rank:"D", skill:"まえのめり", soultimate:"ひゃくれつ肉球" },
+    
+  ];
+  
+  // 一覧
+  app.get("/youkai", (req, res) => {
+    // 本来ならここにDBとのやり取りが入る
+    res.render('youkai1', {data: youkai} );
+  });
+  
+  // Create
+  app.get("/youkai/create", (req, res) => {
+    res.redirect('/public/youkai.html');
+  });
+  
+  // Read
+  app.get("/youkai/:number", (req, res) => {
+    // 本来ならここにDBとのやり取りが入る
+    const number = req.params.number;
+    const detail = youkai[ number ];
+    res.render('youkai_detail', {id: number, data: detail} );
+  });
+  
+  // Delete
+  app.get("/youkai/delete/:number", (req, res) => {
+    // 本来は削除の確認ページを表示する
+    // 本来は削除する番号が存在するか厳重にチェックする
+    // 本来ならここにDBとのやり取りが入る
+    youkai.splice( req.params.number, 1 );
+    res.redirect('/youkai' );
+  });
+  
+  // Create
+  app.post("/youkai", (req, res) => {
+    // 本来ならここにDBとのやり取りが入る
+    const id = youkai.length + 1;
+    const name = req.body.name;
+    const type = req.body.type;
+    const rank = req.body.rank;
+    const skill = req.body.skill;
+    const soultimate = req.body.soultimate;
+    animal.push( { id: id, name: name, type: type, rank: rank, skill: skill, soultimate: soultimate } );
+    console.log( youkai );
+    res.render('youkai1', {data: youkai} );
+  });
+  
+  // Edit
+  app.get("/youkai/edit/:number", (req, res) => {
+    // 本来ならここにDBとのやり取りが入る
+    const number = req.params.number;
+    const detail = youkai[ number ];
+    res.render('youkai_edit', {id: number, data: detail} );
+  });
+  
+  // Update
+  app.post("/youkai/update/:number", (req, res) => {
+    // 本来は変更する番号が存在するか，各項目が正しいか厳重にチェックする
+    // 本来ならここにDBとのやり取りが入る
+    youkai[req.params.number].name = req.body.name;
+    youkai[req.params.number].type = req.body.type;
+    youkai[req.params.number].rank = req.body.rank;
+    youkai[req.params.number].skill = req.body.skill;
+    youkai[req.params.number].soultimate = req.body.soultimate;
+    console.log( youkai );
+    res.redirect('/youkai' );
+  });
 
 
   app.listen(8080, () => console.log("Example app listening on port 8080!"));
-  

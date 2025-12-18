@@ -1,0 +1,23 @@
+<!Doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title><%= data.name %></title>
+</head>
+<body>
+  <h2><%= data.name %>の編集</h2>
+  <form action="/animal/update/<%= data.id - 1 %>" method="POST">
+    <table>
+      <tr><th>項目</th><th>データ</th></tr>
+      <tr><td>ID</td><td><input type="text" name="code" value="<%= data.id %>"></td></tr>
+      <tr><td>名前</td><td><input type="text" name="name" value="<%= data.name %>"></td></tr>
+      <tr><td>種類</td><td><input type="text" name="type" value="<%= data.type %>"></td></tr>
+      <tr><td>性格</td><td><input type="text" name="character" value="<%= data.character %>"></td></tr>
+      <tr><td>誕生日</td><td><input type="text" name="birthday" value="<%= data.birthday %>"></td></tr>
+    </table>
+    <input type="submit" values="登録">
+  </form>
+  <td><a href="/animal/delete/<%= id %>">削除</a></td></tr>
+  <a href="/animal/">どうぶつ一覧に戻る</a>
+</body>
+</html>

@@ -82,5 +82,73 @@ app.post("/spl/random", (req, res) => {
     res.render( 'spl1', {data: buki, randomresult: randomname} );
 });
 
+let animal = [
+    { id:1, name:"1ごう", type:"ネコ", character:"ハキハキ", birthday:"8月1日" },
+    
+  ];
+  
+  // 一覧
+  app.get("/animal", (req, res) => {
+    // 本来ならここにDBとのやり取りが入る
+    res.render('animal1', {data: animal} );
+  });
+  
+  // Create
+  app.get("/animal/create", (req, res) => {
+    res.redirect('/public/animal.html');
+  });
+  
+  // Read
+  app.get("/animal/:number", (req, res) => {
+    // 本来ならここにDBとのやり取りが入る
+    const number = req.params.number;
+    const detail = animal[ number ];
+    res.render('animal_detail', {id: number, data: detail} );
+  });
+  
+  // Delete
+  app.get("/animal/delete/:number", (req, res) => {
+    // 本来は削除の確認ページを表示する
+    // 本来は削除する番号が存在するか厳重にチェックする
+    // 本来ならここにDBとのやり取りが入る
+    animal.splice( req.params.number, 1 );
+    res.redirect('/animal' );
+  });
+  
+  // Create
+  app.post("/animal", (req, res) => {
+    // 本来ならここにDBとのやり取りが入る
+    const id = animal.length + 1;
+    const name = req.body.name;
+    const type = req.body.type;
+    const character = req.body.character;
+    const birthday = req.body.birthday;
+    animal.push( { id: id, name: name, type: type, character: character, birthday: birthday } );
+    console.log( animal );
+    res.render('animal1', {data: animal} );
+  });
+  
+  // Edit
+  app.get("/animal/edit/:number", (req, res) => {
+    // 本来ならここにDBとのやり取りが入る
+    const number = req.params.number;
+    const detail = animal[ number ];
+    res.render('animal_edit', {id: number, data: detail} );
+  });
+  
+  // Update
+  app.post("/animal/update/:number", (req, res) => {
+    // 本来は変更する番号が存在するか，各項目が正しいか厳重にチェックする
+    // 本来ならここにDBとのやり取りが入る
+    animal[req.params.number].name = req.body.name;
+    animal[req.params.number].type = req.body.type;
+    animal[req.params.number].character = req.body.character;
+    animal[req.params.number].birthday = req.body.birthday;
+    console.log( animal );
+    res.redirect('/animal' );
+  });
+  
+
+
   app.listen(8080, () => console.log("Example app listening on port 8080!"));
   

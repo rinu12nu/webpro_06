@@ -1,0 +1,19 @@
+<!Doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title><%= data.name %></title>
+</head>
+<body>
+  <h2><%= data.name %>の詳細</h2>
+  <table>
+    <tr><th>項目</th><th>データ</th></tr>
+    <tr><td>どうぶつ</td><td><%= data.name %></td></tr>
+    <tr><td>種類</td><td><%= data.type %></td></tr>
+    <tr><td>性格</td><td><%= data.character %></td></tr>
+    <tr><td>誕生日</td><td><%= data.birthday %></td></tr>
+  </table>
+  <a href="/animal/edit/<%= id %>">編集</a>
+  <a href="/animal">どうぶつ一覧に戻る</a>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!Doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>どうぶつ一覧表示</title>
+</head>
+<body>
+  <h2>どうぶつの詳細</h2>
+  <table>
+    <tr><th>ID</th><th>名前</th></tr>
+      <% let number = 0 %>
+      <% for( let row of data ) { %>
+        <tr><td><%= row.id %></td>
+        <td><a href="/animal/<%= number %>"><%= row.name %></a></td>
+        <% number += 1 %>
+      <% } %>
+  </table>
+  <a href="/animal/create">追加</a>
+</body>
+</html>

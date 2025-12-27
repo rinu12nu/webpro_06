@@ -5,14 +5,17 @@
   <title>妖怪一覧表示</title>
 </head>
 <body>
-  <h2>妖怪の詳細</h2>
+  <h2>妖怪一覧表示</h2>
   <table>
-    <tr><th>ID</th><th>名前</th></tr>
+    <tr><th>お気に入り</th><th>ID</th><th>名前</th></tr>
       <% let number = 0 %>
       <% for( let row of data ) { %>
-        <tr><td><%= row.id %></td>
-        <td><a href="/youkai/<%= number %>"><%= row.name %></a></td>
-        <% number += 1 %>
+        <tr>
+            <td><input type="checkbox" name="target" value="<%= row.id %>"></td>
+            <td><%= row.id %></td>
+            <td><a href="/youkai/<%= number %>"><%= row.name %></a></td>
+            <% number += 1 %>
+        </tr>
       <% } %>
   </table>
   <a href="/youkai/create">追加</a>
